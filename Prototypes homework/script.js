@@ -2,7 +2,7 @@
 		this.linenumber = linenumber || parseFloat(Math.random() * 100).toFixed(0);
 		this.passengers = passengers || 60;
 		this.color = color || 'Yellow';
-		this.numberOfSeats = numberOfSeats || 50;
+		this.numberOfSeats = numberOfSeats || 60;
 		this.numberOfTires = numberOfTires || 4;
 
 
@@ -25,13 +25,27 @@
 		return this.isDamaged ? "The bus is damaged" : "The bus is ready to go";
 
 	}
-	Bus.prototype.getSeats = function () {
-		let totalSeats = this.passengers - this.numberOfSeats;
-		return (totalSeats === 50) ? "Full bus" : "There are: " + totalSeats + " free seats";
+	Bus.prototype.getPassengers = function () {
+		let totalPassengers = this.numberOfSeats - this.passengers;
+		if (totalPassengers < 60) {
+			return totalPassengers + " more passengers can in";
+		} else if (totalPassengers > 60) {
+			return "Too much passengers";
+		}
+
 	}
-	Bus.prototype.getTires = function(){
+	Bus.prototype.getSeats = function () {
+		let totalSeats = this.numberOfSeats - this.passengers;
+		if (totalSeats < 60) {
+			return "free seats: " + totalSeats;
+		} else if (totalSeats > 60) {
+			return "full bus";
+		}
+
+	}
+	Bus.prototype.getTires = function () {
 		let totalTiers = this.numberOfTires;
-		return (totalTiers === 4) ? "Bus is ready with 4 tires" : "Bus is not ready with 4 tires";
+		return (totalTiers >= 4) ? "Bus is ready with " + totalTiers : "Bus is not ready with 4 tires";
 	}
 
 
@@ -67,10 +81,11 @@
 			getIsWorking: this.getIsWorking(),
 			getSeats: this.getSeats(),
 			checkStatus: this.getIsDamaged(),
-			getTires: this.getTires()
+			getTires: this.getTires(),
+			getPassengers: this.getPassengers()
 		}
 	}
-	let greenBus = new GreenBus(35,'green',4);
-	let yellowBus = new YellowBus(50, 'yellow',3);
+	let greenBus = new GreenBus(50, 'green', 6);
+	let yellowBus = new YellowBus(60, 'yellow', 3);
 	console.log(greenBus.getInfo());
 	console.log(yellowBus.getInfo());
