@@ -26,8 +26,12 @@
 
 	}
 	Bus.prototype.getSeats = function () {
-		let totalSeats = this.numberOfSeats - this.passengers;
-		return (totalSeats === 0) ? "full bus" : "There are: " + totalSeats + " free seats";
+		let totalSeats = this.passengers - this.numberOfSeats;
+		return (totalSeats === 50) ? "Full bus" : "There are: " + totalSeats + " free seats";
+	}
+	Bus.prototype.getTires = function(){
+		let totalTiers = this.numberOfTires;
+		return (totalTiers === 4) ? "Bus is ready with 4 tires" : "Bus is not ready with 4 tires";
 	}
 
 
@@ -62,10 +66,11 @@
 			getIsMoving: this.getIsMoving(),
 			getIsWorking: this.getIsWorking(),
 			getSeats: this.getSeats(),
-			checkStatus: this.getIsDamaged()
+			checkStatus: this.getIsDamaged(),
+			getTires: this.getTires()
 		}
 	}
-	let greenBus = new GreenBus(35,'green', 4, 35, 24);
-	let yellowBus = new YellowBus(45, 'yellow', 6, 35, 57);
+	let greenBus = new GreenBus(35,'green',4);
+	let yellowBus = new YellowBus(50, 'yellow',3);
 	console.log(greenBus.getInfo());
 	console.log(yellowBus.getInfo());
