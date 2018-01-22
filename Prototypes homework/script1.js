@@ -1,3 +1,6 @@
+
+// With class
+
 class Bus {
 
     constructor(passengers, color, numberOfTires, numberOfSeats, linenumber) {
